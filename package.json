@@ -1,0 +1,26 @@
+{
+  "name": "money-logger",
+  "version": "1.0.0",
+  "description": "A budgeting app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paulgreenham/money-logger.git"
+  },
+  "author": "Paul Greenham",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/paulgreenham/money-logger/issues"
+  },
+  "homepage": "https://github.com/paulgreenham/money-logger#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "moment": "^2.24.0",
+    "mongoose": "^5.4.22"
+  }
+}
