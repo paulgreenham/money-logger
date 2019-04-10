@@ -6,9 +6,25 @@ const moment = require('moment')
 const Expense = require('../models/Expense')
 
 router.get('/expenses', function (req, res) {
-    Expense.find({}).sort({date: -1}).exec(function (err, expenses) {
-        res.send(expenses)
-    })
+    if(req.query.d1) {
+    let startDate = moment(req.query.d1, "YYYY-MM-DD").format("LLLL")
+        if(req.query.d2) {
+            let endDate = moment(req.query.d2, "YYYY-MM-DD").format("LLLL")
+            Expense.find().and([{date: {$gte: startDate}}, {date: {$lte: endDate}}]).sort({date: -1}).exec(function (err, expenses) {
+                res.send(expenses)
+            })
+        }
+        else {
+            Expense.find({date: {$gte: startDate}}).sort({date: -1}).exec(function (err, expenses) {
+                res.send(expenses)
+            })
+        }
+    }
+    else {
+        Expense.find({}).sort({date: -1}).exec(function (err, expenses) {
+            res.send(expenses)
+        })
+    }  
 })
 
 router.get('/expenses/:group', function (req, res) {
@@ -51,5 +67,7 @@ router.put('/update/:group1/:group2', function (req, res) {
         res.send(`Expense: ${expense.name} on ${expense.date} has had group ${req.params.group1} changed to ${expense.group}`)
     })
 })
+
+
 
 module.exports = router
