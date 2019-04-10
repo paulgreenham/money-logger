@@ -5,7 +5,7 @@ const api = require('./server/routes/api')
 
 
 const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/peopleDB', {useNewUrlParser: true})
+mongoose.connect('mongodb://localhost/expensesDB', {useNewUrlParser: true})
 
 
 const app = express()
@@ -15,8 +15,20 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 app.use('/', api)
 
+// const Expense = require('./server/models/Expense')
+
+// const testData = require('./test-data')
+// for(let item of testData) {
+//     let entry = new Expense ({
+//         name: item.item,
+//         amount: item.amount,
+//         date: item.date,
+//         group: item.group
+//     })
+//     entry.save()
+// }
 
 const port = 3723
 app.listen(port, function () {
-    console.log(`Server running on port port`)
+    console.log(`Server running on port ${port}`)
 })
